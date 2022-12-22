@@ -1,0 +1,84 @@
+{
+  "name": "home-remote",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/home-remote/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/packages/home-remote",
+        "index": "packages/home-remote/src/index.html",
+        "baseHref": "/",
+        "main": "packages/home-remote/src/main.tsx",
+        "polyfills": "packages/home-remote/src/polyfills.ts",
+        "tsConfig": "packages/home-remote/tsconfig.app.json",
+        "assets": [
+          "packages/home-remote/src/favicon.ico",
+          "packages/home-remote/src/assets"
+        ],
+        "styles": ["packages/home-remote/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "packages/home-remote/src/environments/environment.ts",
+              "with": "packages/home-remote/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "home-remote:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "home-remote:build:development"
+        },
+        "production": {
+          "buildTarget": "home-remote:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/home-remote/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/home-remote/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
