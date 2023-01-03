@@ -1,0 +1,20 @@
+{
+  "monorepo": true,
+  "root": "packages/mqtt-home-remote",
+  "sourceRoot": "packages/mqtt-home-remote/src",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "packages/mqtt-home-remote/tsconfig.app.json"
+  },
+  "projects": {
+    "mqtt-home-remote": {
+      "type": "application",
+      "root": "packages/mqtt-home-remote",
+      "entryFile": "main",
+      "sourceRoot": "packages/mqtt-home-remote/src",
+      "compilerOptions": {
+        "tsConfigPath": "packages/mqtt-home-remote/tsconfig.app.json"
+      }
+    }
+  }
+}
