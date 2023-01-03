@@ -1,6 +1,6 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { connect, IClientOptions, MqttClient, ClientSubscribeCallback, OnMessageCallback, IPublishPacket } from 'mqtt';
+import { connect, IClientOptions, MqttClient, IPublishPacket } from 'mqtt';
 
 @Injectable()
 export class MqttService  implements OnModuleInit{
@@ -8,7 +8,7 @@ export class MqttService  implements OnModuleInit{
     private messageCallbacks = {};
     constructor(private configService: ConfigService) {}
 
-    onModuleInit() {
+    public onModuleInit() {
         const host = this.configService.get<string>('MQTT_HOST');
         const port = this.configService.get<string>('MQTT_PORT');
         const protocol = this.configService.get<'mqtt' | 'ws' | 'mqtts'>('MQTT_PROTOCOL');

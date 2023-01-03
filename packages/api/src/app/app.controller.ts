@@ -1,5 +1,5 @@
-import { Controller, Get, Post } from '@nestjs/common';
-import { HeartbeatService } from '../heartbeat/heartbeat.service';
+import { Controller, Post } from '@nestjs/common';
+import { HeartbeatService } from './heartbeat/heartbeat.service';
 
 
 @Controller()
